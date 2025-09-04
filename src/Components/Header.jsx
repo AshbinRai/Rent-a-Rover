@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+
+import Img3 from '/home/ashbin/Documents/Code/RentaRover/Rent-a-Rover/src/Images/black-white-rolls-royce-logo_svgstack_com_33561756887506.svg'
+
+
 import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
+    const [activeitem, setActiveItem] = useState('Home');
 
     // Navigation items data
     const navItems = [
@@ -20,8 +25,8 @@ const Header = () => {
                 <div className="flex justify-between items-center h-16">
 
                     <div className="flex-shrink-0 flex items-center">
-                        <div className="h-10 w-10 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold mr-2">
-                            RR
+                        <div className="h-10 w-10 rounded-md flex items-center justify-center text-white font-bold mr-2">
+                            <img src={Img3} alt="" />
                         </div>
                         <span className="text-xl font-bold text-gray-800">RentaRover</span>
                     </div>
@@ -34,10 +39,12 @@ const Header = () => {
                                 to={item.path}
                                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${location.pathname === item.path
                                     ? 'text-blue-600 bg-blue-50'
-                                    : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
+                                    : 'text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative'
                                     }`}
+
                             >
                                 {item.label}
+
                             </Link>
                         ))}
                     </nav>
@@ -66,7 +73,7 @@ const Header = () => {
                             aria-expanded="false"
                         >
                             <span className="sr-only">Open main menu</span>
-                            {/* Text-based menu icon */}
+                            {/* menu icon */}
                             <span className="text-lg font-bold">
                                 {isMenuOpen ? 'X' : '≡'}
                             </span>

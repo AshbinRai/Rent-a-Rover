@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import Img1 from '/home/ashbin/Documents/Code/RENTAROVER/Rent-a-Rover/src/Images/google-logo_svgstack_com_50421756869916.svg'
-import Img2 from '/home/ashbin/Documents/Code/RENTAROVER/Rent-a-Rover/src/Images/github-logo-svg_svgstack_com_28391756871547.svg'
+import Img1 from '/home/ashbin/Documents/Code/RentaRover/Rent-a-Rover/src/Images/google-logo_svgstack_com_50421756869916.svg'
+import Img2 from '/home/ashbin/Documents/Code/RentaRover/Rent-a-Rover/src/Images/github-logo-svg_svgstack_com_28391756871547.svg'
 
 const AuthPage = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -49,7 +49,7 @@ const AuthPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            // Here you would typically make an API call
+            // Here you would make an API call
             console.log('Form submitted:', formData);
             alert(isLogin ? 'Login successful!' : 'Account created successfully!');
         }
