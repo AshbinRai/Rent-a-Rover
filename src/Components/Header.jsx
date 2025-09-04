@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 
 import Img3 from '/home/ashbin/Documents/Code/RentaRover/Rent-a-Rover/src/Images/black-white-rolls-royce-logo_svgstack_com_33561756887506.svg'
-
-
 import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
-    const [activeitem, setActiveItem] = useState('Home');
 
-    // Navigation items data
+
     const navItems = [
         { id: 'home', label: 'Home', path: '/' },
         { id: 'hire', label: 'Hire a Driver', path: '/hire' },
@@ -25,10 +22,10 @@ const Header = () => {
                 <div className="flex justify-between items-center h-16">
 
                     <div className="flex-shrink-0 flex items-center">
-                        <div className="h-10 w-10 rounded-md flex items-center justify-center text-white font-bold mr-2">
-                            <img src={Img3} alt="" />
+                        <div className="h-10 w-10 flex items-center justify-center text-white font-bold mr-2">
+                            <img src={Img3} />
                         </div>
-                        <span className="text-xl font-bold text-gray-800">RentaRover</span>
+                        <span className="text-xl font-bold text-gray-800">RentalRide</span>
                     </div>
 
 
@@ -37,14 +34,18 @@ const Header = () => {
                             <Link
                                 key={item.id}
                                 to={item.path}
-                                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${location.pathname === item.path
-                                    ? 'text-blue-600 bg-blue-50'
-                                    : 'text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative'
-                                    }`}
-
+                                className="relative group"
                             >
-                                {item.label}
+                                <span className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${location.pathname === item.path
+                                    ? 'text-blue-600'
+                                    : 'text-gray-700 group-hover:text-blue-600'
+                                    }`}>
+                                    {item.label}
+                                </span>
 
+
+                                <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full ${location.pathname === item.path ? 'w-full' : ''
+                                    }`}></span>
                             </Link>
                         ))}
                     </nav>
@@ -53,13 +54,14 @@ const Header = () => {
                     <div className="hidden md:flex items-center space-x-4">
                         <Link
                             to="/login"
-                            className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                            className="relative group px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200"
                         >
-                            Log in
+                            <span className="group-hover:text-blue-600">Log in</span>
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                         </Link>
                         <Link
                             to="/signup"
-                            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors duration-200"
+                            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
                         >
                             Sign up
                         </Link>
@@ -69,13 +71,12 @@ const Header = () => {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
                             aria-expanded="false"
                         >
                             <span className="sr-only">Open main menu</span>
-                            {/* menu icon */}
                             <span className="text-lg font-bold">
-                                {isMenuOpen ? 'X' : '≡'}
+                                {isMenuOpen ? '✕' : '☰'}
                             </span>
                         </button>
                     </div>
@@ -90,26 +91,29 @@ const Header = () => {
                                     key={item.id}
                                     to={item.path}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${location.pathname === item.path
+                                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 relative group ${location.pathname === item.path
                                         ? 'text-blue-600 bg-blue-50'
                                         : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
                                         }`}
                                 >
-                                    {item.label}
+                                    <span>{item.label}</span>
+                                    <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full ${location.pathname === item.path ? 'w-full' : ''
+                                        }`}></span>
                                 </Link>
                             ))}
                             <div className="pt-4 pb-3 border-t border-gray-200">
                                 <Link
                                     to="/login"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-colors duration-200"
+                                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-colors duration-200 relative group"
                                 >
-                                    Log in
+                                    <span>Log in</span>
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                                 <Link
                                     to="/signup"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 mt-2 transition-colors duration-200"
+                                    className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 mt-2 transition-colors duration-200 shadow-sm hover:shadow-md"
                                 >
                                     Sign up
                                 </Link>

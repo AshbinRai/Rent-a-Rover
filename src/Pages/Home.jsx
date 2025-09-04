@@ -1,9 +1,10 @@
 import React from "react";
+import Selection from "../Components/Selection"
 
 const Home = () => {
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <h1 className="text-3xl font-bold">Home Page</h1>
+        <div className="min-h-screen">
+            <Selection />
         </div>
     );
 };
